@@ -1,0 +1,25 @@
+mvn clean - clean the all previous builds
+mvn compile - compiles the test code
+mvn test - check first the pom file and check whether all the dependency available on local (.m2 folder) and then it get it from maven repo.
+         - after that start executing the tests.
+
+maven only execute the tests which have "Test" key at the last of the classname.
+
+How to configure the maven to follow testng instructions :
+Add configuration block in pom file.
+<plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>3.0.0-M5</version>
+          <configuration>
+            <suiteXmlFiles>
+              <suiteXmlFile>testng.xml</suiteXmlFile>
+            </suiteXmlFiles>
+          </configuration>
+</plugin>
+
+How to execute single class tests
+mvn -Dtest=AppiumTest test
+
+How to execute test as per profile:
+mvn test -P{ProfileName}
